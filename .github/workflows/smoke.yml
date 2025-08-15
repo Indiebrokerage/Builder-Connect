@@ -1,0 +1,28 @@
+name: Smoke (Docker Compose)
+on:
+  push: { branches: [ main ] }
+  pull_request: { branches: [ main ] }
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node & Python
+        uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - name: Bring up stack
+        run: docker compose up -d --build
+      - name: Wait for backend
+        run: |
+          for i in {1..30}; do
+            curl -fsS http://localhost:8000/healthz && break || sleep 2
+          done
+      - name: Smoke tests
+        run: API_BASE=http://localhost:8000 ./scripts/smoke.sh
+      - name: Upload smoke artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: smoke_artifacts
+          path: smoke_artifacts
