@@ -1,0 +1,8 @@
+:root[data-brand="default"][data-color-scheme="light"]{
+  --color-primary:#28587B; --color-onPrimary:#FFFFFF; --color-surface:#F7F9FA; --color-text:#1F2A36; --color-success:#4B8158; --color-accent:#7B5E42;
+  --radius-md:12px; --radius-lg:16px; --radius-xl:20px; --font-family:Inter; --space-sm:8px; --space-md:12px; --space-lg:16px; --space-xl:24px;
+}
+:root[data-brand="default"][data-color-scheme="dark"]{
+  --color-primary:#7CB4D6; --color-onPrimary:#121212; --color-surface:#121212; --color-text:#E6E6E6; --color-success:#7FB38D; --color-accent:#A98565;
+  --radius-md:12px; --radius-lg:16px; --radius-xl:20px; --font-family:Inter; --space-sm:8px; --space-md:12px; --space-lg:16px; --space-xl:24px;
+}

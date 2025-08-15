@@ -1,0 +1,26 @@
+{
+  "homedepot": [
+    {
+      "sku": "HD-2x4-8",
+      "name": "2x4x8 Stud",
+      "price": 3.29,
+      "uom": "ea"
+    }
+  ],
+  "lowes": [
+    {
+      "sku": "LW-PLY-34",
+      "name": "Plywood 3/4 4x8",
+      "price": 34.99,
+      "uom": "sheet"
+    }
+  ],
+  "menards": [
+    {
+      "sku": "MN-SHINGLE-ARCH",
+      "name": "Architectural Shingles (bundle)",
+      "price": 29.49,
+      "uom": "bundle"
+    }
+  ]
+}

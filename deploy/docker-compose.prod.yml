@@ -1,0 +1,35 @@
+services:
+  web:
+    environment:
+      - NEXT_PUBLIC_API_BASE=https://${REC_DOMAIN:-localhost}
+    command: sh -lc "npm i && npm run build && npm run start -p 3000"
+  backend:
+    environment:
+      - API_BASE=${API_BASE:-http://backend:8000}
+      - FIGMA_TOKEN=${FIGMA_TOKEN}
+      - FIGMA_FILE_ID=${FIGMA_FILE_ID}
+      - BRAND_LIST=${BRAND_LIST:-default,acme,greenfield}
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ["80:80","443:443"]
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [web, backend]
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - pg_data:${POSTGRES_VOLUME}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+volumes:
+  caddy_data: {}
+  caddy_config: {}
+  pg_data: {}

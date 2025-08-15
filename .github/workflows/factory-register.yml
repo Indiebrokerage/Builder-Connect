@@ -1,0 +1,28 @@
+name: Factory — Register Graph (optional)
+on:
+  workflow_dispatch:
+    inputs:
+      graph:
+        description: "Which graph to register"
+        required: true
+        default: "full"
+        type: choice
+        options: [full, demo]
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    env:
+      FACTORY_API: ${{ secrets.FACTORY_API }}
+      FACTORY_TOKEN: ${{ secrets.FACTORY_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Register taskgraph
+        run: |
+          set -euo pipefail
+          FILE="ops/factori/taskgraph.json"
+          if [ "${{ inputs.graph }}" = "demo" ]; then FILE="ops/factori/taskgraph.demo.json"; fi
+          if [ -z "$FACTORY_API" ] || [ -z "$FACTORY_TOKEN" ]; then
+            echo "::warning::Set FACTORY_API and FACTORY_TOKEN repo secrets to enable this workflow."
+            exit 0
+          fi
+          curl -sS -X POST "$FACTORY_API/v1/taskgraphs"             -H "Authorization: Bearer $FACTORY_TOKEN"             -H "Content-Type: application/json"             --data-binary @"$FILE"

@@ -1,0 +1,8 @@
+{
+  "name": "rec-factory-oneclick",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "theme:sync": "node scripts/sync-figma-tokens.js"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "env": {
+    "API_BASE": "http://backend:8000",
+    "FACTORY_WEBHOOK": "http://backend:8000/v1/factori/webhook"
+  },
+  "nodes": [
+    {
+      "id": "agent.theme_sync",
+      "image": "ghcr.io/rec/agent-theme-sync:latest"
+    },
+    {
+      "id": "agent.bidsheet_refresh",
+      "image": "ghcr.io/rec/agent-bidsheet-refresh:latest"
+    }
+  ],
+  "triggers": [
+    {
+      "cron": "0 6 * * *",
+      "run": "agent.theme_sync"
+    },
+    {
+      "cron": "0 8 * * MON",
+      "run": "agent.bidsheet_refresh"
+    }
+  ]
+}

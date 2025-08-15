@@ -1,0 +1,8 @@
+FROM node:20-alpine
+WORKDIR /usr/src/app
+COPY package.json package-lock.json* pnpm-lock.yaml* yarn.lock* ./ 2>/dev/null || true
+RUN npm i -g npm@latest
+RUN npm i --silent || true
+COPY . .
+EXPOSE 3000
+CMD ["npm","run","dev"]

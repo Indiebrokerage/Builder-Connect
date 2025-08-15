@@ -1,0 +1,26 @@
+[
+  {
+    "id": "demo",
+    "name": "123 Maple St Duplex",
+    "type": "residential",
+    "address": "123 Maple St, Iowa City, IA",
+    "county": "Johnson",
+    "state": "IA",
+    "lines": [
+      {
+        "code": "FRM-001",
+        "desc": "Framing lumber",
+        "vendor_pref": "homedepot",
+        "qty": 200,
+        "uom": "ea"
+      },
+      {
+        "code": "RF-001",
+        "desc": "Roofing shingles",
+        "vendor_pref": "menards",
+        "qty": 65,
+        "uom": "bundle"
+      }
+    ]
+  }
+]

@@ -1,0 +1,5 @@
+@import "../styles/theme.css";
+main{background:var(--color-surface); color:var(--color-text); min-height:100vh;}
+.btn{display:inline-block; padding:10px 14px; border-radius:var(--radius-lg,16px); background:var(--color-primary); color:var(--color-onPrimary); text-decoration:none;}
+.card{padding:16px; border-radius:var(--radius-lg,16px); background:rgba(0,0,0,0.04);}
+@media (prefers-color-scheme: dark){ .card{ background:rgba(255,255,255,0.06);} }
