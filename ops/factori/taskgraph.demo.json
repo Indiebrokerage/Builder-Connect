@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "env": {
+    "API_BASE": "http://backend:8000"
+  },
+  "nodes": [
+    {
+      "id": "agent.bidsheet_refresh",
+      "image": "ghcr.io/rec/agent-bidsheet-refresh:latest"
+    }
+  ],
+  "triggers": [
+    {
+      "cron": "0 9 * * *",
+      "run": "agent.bidsheet_refresh"
+    }
+  ]
+}
