@@ -1,0 +1,7 @@
+{ email {env.REC_ADMIN_EMAIL} }
+{$REC_DOMAIN} {
+  encode zstd gzip
+  @api path /v1/* /healthz /readyz /docs*
+  reverse_proxy @api backend:8000
+  reverse_proxy web:3000
+}
